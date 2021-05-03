@@ -9,20 +9,20 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 public class Estado {
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Include
 	private Long id;
-
+	
 	@Column(nullable = false)
 	private String nome;
-
+	
 	@Column(nullable = false, length = 2)
-	private String nomeReduzido;
-
+	private String uf;
+	
 }

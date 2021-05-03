@@ -9,42 +9,42 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ailtonluiz.food.domain.model.Cidade;
-import com.ailtonluiz.food.domain.repository.CidadeRepository;
+import com.ailtonluiz.food.domain.model.Cozinha;
+import com.ailtonluiz.food.domain.repository.CozinhaRepository;
 
 @Component
-public class CidadeRepositoryImpl implements CidadeRepository {
+public class CozinhaRepositoryImpl implements CozinhaRepository {
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Override
-	public List<Cidade> listar() {
-		return manager.createQuery("from Cidade", Cidade.class)
+	public List<Cozinha> listar() {
+		return manager.createQuery("from Cozinha", Cozinha.class)
 				.getResultList();
 	}
 	
 	@Override
-	public Cidade buscar(Long id) {
-		return manager.find(Cidade.class, id);
+	public Cozinha buscar(Long id) {
+		return manager.find(Cozinha.class, id);
 	}
 	
 	@Transactional
 	@Override
-	public Cidade salvar(Cidade cidade) {
-		return manager.merge(cidade);
+	public Cozinha salvar(Cozinha cozinha) {
+		return manager.merge(cozinha);
 	}
 	
 	@Transactional
 	@Override
 	public void remover(Long id) {
-		Cidade cidade = buscar(id);
+		Cozinha cozinha = buscar(id);
 		
-		if (cidade == null) {
+		if (cozinha == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		
-		manager.remove(cidade);
+		manager.remove(cozinha);
 	}
 
 }

@@ -9,42 +9,42 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ailtonluiz.food.domain.model.Cidade;
-import com.ailtonluiz.food.domain.repository.CidadeRepository;
+import com.ailtonluiz.food.domain.model.Estado;
+import com.ailtonluiz.food.domain.repository.EstadoRepository;
 
 @Component
-public class CidadeRepositoryImpl implements CidadeRepository {
+public class EstadoRepositoryImpl implements EstadoRepository {
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Override
-	public List<Cidade> listar() {
-		return manager.createQuery("from Cidade", Cidade.class)
+	public List<Estado> listar() {
+		return manager.createQuery("from Estado", Estado.class)
 				.getResultList();
 	}
 	
 	@Override
-	public Cidade buscar(Long id) {
-		return manager.find(Cidade.class, id);
+	public Estado buscar(Long id) {
+		return manager.find(Estado.class, id);
 	}
 	
 	@Transactional
 	@Override
-	public Cidade salvar(Cidade cidade) {
-		return manager.merge(cidade);
+	public Estado salvar(Estado estado) {
+		return manager.merge(estado);
 	}
 	
 	@Transactional
 	@Override
 	public void remover(Long id) {
-		Cidade cidade = buscar(id);
+		Estado estado = buscar(id);
 		
-		if (cidade == null) {
+		if (estado == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		
-		manager.remove(cidade);
+		manager.remove(estado);
 	}
 
 }
